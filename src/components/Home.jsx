@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 const Home = () => {
   const [pokemons, setPokemons] = useState()
   const [url, setUrl] = useState('https://pokeapi.co/api/v2/pokemon')
 
-  const fetchPokemon = async () => {
-    const response = await fetch(url)
-    const json = await response.json()
-    setPokemons(json)
-  }
-
   useEffect(() => {
+    const fetchPokemon = async () => {
+      const response = await fetch(url)
+      const json = await response.json()
+      setPokemons(json)
+    }
+
     fetchPokemon()
   }, [url])
 
   const nextPage = () => {
     setUrl(pokemons.next)
   }
-  
+
   const prevPage = () => {
     setUrl(pokemons.next)
   }
@@ -30,12 +31,13 @@ const Home = () => {
         pokemons ? (
           <ul>
             {
-              pokemons.results.map((pokemon) => {
-                const { name } = pokemon
-                return (
-                  <li key={name}>{name}</li>
+              pokemons.results.map(
+                ({ name }) => (
+                  <li>
+                    <Link key={name} to={name}>{name}</Link>
+                  </li>
                 )
-              })
+              )
             }
           </ul>
         ) : (
