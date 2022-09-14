@@ -9,9 +9,7 @@ const PokemonDetail = () => {
     const [pokemon, setPokemon] = useState()
 
     useEffect(() => {
-
         setUrl(name)
-
         const fetchPokemon = async () => {
             const response = await fetch(url)
             const json = await response.json()
@@ -28,14 +26,27 @@ const PokemonDetail = () => {
                 pokemon ?
                     (
                         <>
-                            <div>base experience: {pokemon.base_experience}</div>
                             <h3>Abilities</h3>
                             {
                                 pokemon.abilities.map((ab) => (
-                                    <>
-                                        <p>ability: {ab.ability.name}</p>
-                                        <p>ability: {ab.slot}</p>
-                                    </>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                ability:
+                                            </td>
+                                            <td>
+                                                {ab.ability.name}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                slot
+                                            </td>
+                                            <td>
+                                                {ab.slot}
+                                            </td>
+                                        </tr>
+                                    </table>
                                 )
 
                                 )
@@ -43,10 +54,24 @@ const PokemonDetail = () => {
                             <h3>Foms</h3>
                             {
                                 pokemon.forms.map((form) => (
-                                    <>
-                                        <p>name: {form.name}</p>
-                                        <p>url: {form.url}</p>
-                                    </>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                name
+                                            </td>
+                                            <td>
+                                                {form.name}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                url
+                                            </td>
+                                            <td>
+                                                {form.url}
+                                            </td>
+                                        </tr>
+                                    </table>
                                 )
                                 )
                             }
